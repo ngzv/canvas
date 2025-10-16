@@ -1,0 +1,10 @@
+{
+  /// 配置路径别名，@ 指向 src 目录
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  /// 排除 node_modules 和 dist 目录
+  "exclude": ["node_modules", "dist"]
+}
