@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <!-- id 标识元素唯一性，方便通过 document.getElementById 方法获取元素； 
       width、height 定义画布的宽度和高度，单位为像素；
     -->
@@ -49,6 +49,9 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.home {
+  width: 100%;
+  margin: 0px auto;
+}
 </style>
