@@ -1,0 +1,167 @@
+/* 加载动画,吃豆人效果 */
+/* 使用:
+ * 1. 在 `body` 的 `#id` 元素中添加 `#loading` 元素
+ * 元素结构:
+ * `<div id="loading">
+ *   <div class="loading-loader">
+ *     <div class="eye"></div>
+ *     <div class="mouth-one"></div>
+ *     <div class="mouth-two"></div>
+ *     <div class="bean-one"></div>
+ *     <div class="bean-two"></div>
+ *   </div>
+ *   <p class="loading-text">资源正在加载中..</p>
+ * </div>`
+ * 2. 在 `head` 中对当前文件进行引用
+ * `<link rel="stylesheet" type="text/css" href="/css/eat.css" />`
+ * 3. 加载完成后,在 `body` 的 `script` 标签内添加 `loaded` 类名进行卸载
+ * `/// 等待DOM和Vue应用加载完成
+ * document.addEventListener('DOMContentLoaded', () => {
+ *   /// 监听Vue应用挂载完成
+ *   const checkAppLoaded = setInterval(() => {
+ *     const app = document.querySelector('#app');
+ *     if (app && app.children.length > 0) {
+ *       /// 应用已加载，隐藏动画
+ *       document.getElementById('loading').classList.add('loaded');
+ *       clearInterval(checkAppLoaded);
+ *     }
+ *   }, 100);
+ *   /// 安全超时机制，防止动画无限显示
+ *   setTimeout(() => {
+ *     document.getElementById('loading').classList.add('loaded');
+ *   }, 6000);
+ * });`
+ */
+
+ #loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-loader {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+/* 使用伪元素创建吃豆人的眼睛 */
+.loading-loader::before {
+  content: '';
+  width: 0.4em;
+  height: 0.4em;
+  border-radius: 50%;
+  background-color: #333;
+  position: absolute;
+  top: 8px;
+  left: 21px;
+  z-index: 2000;
+}
+
+/* mouth-one 搭配 mouth-two 组成吃豆人张嘴闭嘴的动画 */
+.mouth-one {
+  width: 0;
+  height: 0;
+  border: 25px solid #42b983;
+  border-radius: 50%;
+  border-right-color: transparent;
+  animation: upup .32s 0s infinite;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes upup {
+  0% {
+    transform: rotate(270deg);
+  }
+
+  50% {
+    transform: rotate(1turn);
+  }
+
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+.mouth-two {
+  width: 0;
+  height: 0;
+  border: 25px solid #42b983;
+  border-right-color: transparent;
+  border-radius: 25px;
+  margin-top: -50px;
+  animation: downdown .32s 0s infinite;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes downdown {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+/* 豆子不断移动 */
+.bean-one {
+  background-color: #42b983;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  transform: translateY(-6px);
+  top: 25px;
+  left: 100px;
+  animation: beanAnimation 1s linear .52s infinite;
+}
+
+.bean-two {
+  background-color: #42b983;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  transform: translateY(-6px);
+  top: 25px;
+  left: 100px;
+  animation: beanAnimation 1s linear 1.1s infinite;
+}
+
+
+@keyframes beanAnimation {
+  75% {
+    opacity: .72;
+  }
+
+  100% {
+    transform: translate(-100px, -6px);
+  }
+}
+
+/* 加载文本 */
+.loading-text {
+  color: #818283;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* 加载完成后的隐藏效果 */
+#loading.loaded {
+  opacity: 0;
+  pointer-events: none;
+}

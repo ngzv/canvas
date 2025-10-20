@@ -14,16 +14,16 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import Png401 from "@/assets/exception/401.png"
+import Png401 from '@/assets/exception/401.png'
 
 const route = useRoute()
 const router = useRouter()
 
-const ExceptionPng = ref(Png401 + "?" + new Date())
+const ExceptionPng = ref(Png401 + '?' + new Date())
 
 function back() {
   if (route.query.noGoBack) {
-    router.push({ path: "/" })
+    router.push({ path: '/' })
   } else {
     router.go(-1)
   }

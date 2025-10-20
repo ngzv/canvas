@@ -1,0 +1,141 @@
+/* 音频波纹、涟漪效果 */
+/* 使用:
+ * 1. 在 `body` 的 `#id` 元素中添加 `#loading` 元素
+ * 元素结构:
+ * `<div id="loading">
+ *   <div class="loading-loader">
+ *     <span></span>
+ *     <span></span>
+ *     <span></span>
+ *     <span></span>
+ *     <span></span>
+ *     <span></span>
+ *     <span></span>
+ *     <span></span>
+ *     <span></span>
+ *   </div>
+ *   <p class="loading-text">资源正在加载中..</p>
+ * </div>`
+ * 2. 在 `head` 中对当前文件进行引用
+ * `<link rel="stylesheet" type="text/css" href="/css/ripple.css" />`
+ * 3. 加载完成后,在 `body` 的 `script` 标签内添加 `loaded` 类名进行卸载
+ * `/// 等待DOM和Vue应用加载完成
+ * document.addEventListener('DOMContentLoaded', () => {
+ *   /// 监听Vue应用挂载完成
+ *   const checkAppLoaded = setInterval(() => {
+ *     const app = document.querySelector('#app');
+ *     if (app && app.children.length > 0) {
+ *       /// 应用已加载，隐藏动画
+ *       document.getElementById('loading').classList.add('loaded');
+ *       clearInterval(checkAppLoaded);
+ *     }
+ *   }, 100);
+ *   /// 安全超时机制，防止动画无限显示
+ *   setTimeout(() => {
+ *     document.getElementById('loading').classList.add('loaded');
+ *   }, 6000);
+ * });`
+ */
+
+#loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loading-loader {
+  width: 135px;
+  height: 100px;
+  display: flex;
+}
+
+.loading-loader span {
+  width: 8px;
+  border-radius: 16px;
+  margin-right: 8px;
+  /* 通用动画：所有条共用一个动画逻辑 */
+  animation: barMove 2s infinite linear;
+}
+
+.loading-loader span:nth-child(1) {
+  /* 时间递增，参差不齐的效果 */
+  --color: #f677b0;
+  animation-delay: 0.2s;
+}
+
+.loading-loader span:nth-child(2) {
+  --color: #df7ff2;
+  animation-delay: 0.4s;
+}
+
+.loading-loader span:nth-child(3) {
+  --color: #8c7ff2;
+  animation-delay: 0.6s;
+}
+
+.loading-loader span:nth-child(4) {
+  --color: #7fd0f2;
+  animation-delay: 0.8s;
+}
+
+.loading-loader span:nth-child(5) {
+  --color: #7ff2d3;
+  animation-delay: 1.0s;
+}
+
+.loading-loader span:nth-child(6) {
+  --color: #7ff2a0;
+  animation-delay: 1.2s;
+}
+
+.loading-loader span:nth-child(7) {
+  --color: #adf27f;
+  animation-delay: 1.4s;  
+}
+
+.loading-loader span:nth-child(8) {
+  --color: #e7f27f;
+  animation-delay: 1.6s;
+}
+
+.loading-loader span:nth-child(9) {
+  --color: #ecaa64;
+  animation-delay: 1.8s;
+}
+
+/* 通用动画：通过变量获取颜色 */
+@keyframes barMove {
+  0% {
+    background: var(--color);
+    margin-top: 25%;
+    height: 10%;
+  }
+  50% {
+    background: var(--color);
+    height: 100%;
+    margin-top: 0%;
+  }
+  100% {
+    background: var(--color);
+    height: 10%;
+    margin-top: 25%;
+  }
+}
+
+/* 加载文本 */
+.loading-text {
+  color: #818283;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* 加载完成后的隐藏效果 */
+#loading.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
