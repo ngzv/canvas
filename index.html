@@ -1,17 +1,32 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- 字符编码 -->
     <meta charset="UTF-8" />
+    <!-- 安全相关 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <!-- 视口设置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- 搜索引擎优化 -->
+    <!-- <meta name="description" content="XX - xxxx" />
+    <meta name="keywords" content="xx,xx,xx,xx" /> -->
+    <!-- 引入资源 -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" type="text/css" href="/css/ripple.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="/src/main.js" as="script" />
+    <!-- 页面标题 -->
     <title>Canvas</title>
   </head>
   <body>
     <noscript>
-      <strong>
-        We're sorry but application doesn't work properly without JavaScript enabled. Please enable it to continue.
-      </strong>
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF; display: flex; align-items: center; justify-content: center; z-index: 9999; text-align: center; padding: 20px;">
+        <div>
+          <h1 style="color: #333333; margin-bottom: 16px;">需要启用 JavaScript</h1>
+          <p style="color: #666666; font-size: 18px;">很抱歉，应用程序需要启用 JavaScript 才能正常工作。请启用 JavaScript 后继续使用。</p>
+        </div>
+      </div>
     </noscript>
     <div id="app">
       <!-- 加载动画容器 -->
@@ -24,23 +39,39 @@
         <p class="loading-text">资源正在加载中..</p>
       </div>
     </div>
-    <script type="module" src="/src/main.js">
-      /// 等待DOM和Vue应用加载完成
+    <script type="module" src="/src/main.js"></script>
+    <!-- 加载动画处理脚本 -->
+    <script>
+      /// 等待 `DOM` 内容加载完成
       document.addEventListener('DOMContentLoaded', () => {
-        /// 监听Vue应用挂载完成
+        /// 监听 `Vue` 应用挂载完成
         const checkAppLoaded = setInterval(() => {
-          const app = document.querySelector('#app');
-          if (app && app.children.length > 0) {
-            /// 应用已加载，隐藏动画
-            document.getElementById('loading').classList.add('loaded');
-            clearInterval(checkAppLoaded);
+          const app = document.getElementById('app')
+          // 检查是否有除 `loading` 之外的元素
+          if (app && app.children && app.children.length > 1) {
+            const loading = document.getElementById('loading')
+            if (loading) {
+              loading.classList.add('loaded')
+              // 添加淡出动画
+              setTimeout(() => {
+                loading.style.display = 'none'
+              }, 300)
+            }
+            clearInterval(checkAppLoaded)
           }
-        }, 100);
+        }, 100)
         /// 安全超时机制，防止动画无限显示
         setTimeout(() => {
-          document.getElementById('loading').classList.add('loaded');
-        }, 6000);
-      });
+          const loading = document.getElementById('loading')
+          if (loading) {
+            loading.classList.add('loaded')
+            setTimeout(() => {
+              loading.style.display = 'none'
+            }, 300)
+          }
+          clearInterval(checkAppLoaded)
+        }, 6000)
+      })
     </script>
   </body>
 </html>
