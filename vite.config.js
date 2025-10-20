@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
 
 /// `https://vite.dev/config/`
 export default defineConfig(({ command, mode }) => {
@@ -13,7 +14,16 @@ export default defineConfig(({ command, mode }) => {
     /// 配置公共路径
     base: VITE_PUBLIC_PATH || '/',
     /// 配置插件
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      AutoImport({
+        // 页面自动引入vue 插件 - 自动导入系统的 如 ref、reactive、toRef、shallowRef、onMounted 等
+        // ==> '@vueuse/core' 自动释放
+        imports: ['vue', 'vue-router', '@vueuse/core' ],
+        // 自动生成声明文件
+        dts: false,
+      }),
+    ],
     /// 配置路径别名与扩展名
     resolve: {
       // 配置路径别名，`@` 指向 `src` 目录
