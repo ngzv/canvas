@@ -6,7 +6,7 @@ export const routes = [
     component: () => import('../views/home/index.vue'),
     meta: {
       title: '首页',
-      isHome: true,
+      isHome: true
     }
   },
   {
@@ -14,7 +14,7 @@ export const routes = [
     name: '401',
     component: () => import('../views/exception/401.vue'),
     meta: {
-      title: '401 未授权',
+      title: '401 未授权'
     }
   },
   {
@@ -22,7 +22,7 @@ export const routes = [
     name: '404',
     component: () => import('../views/exception/404.vue'),
     meta: {
-      title: '404 页面不存在',
+      title: '404 页面不存在'
     }
-  },
-]
+  }
+];

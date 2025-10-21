@@ -1,3 +1,12 @@
+# .gitattributes
+# 指定仓库内文件属性的配置文件 
+# 用于配置 Git 对仓库中文件的处理规则，涵盖换行符转换、二进制文件标记、语言统计、LFS 跟踪等多个场景。
+
+# Linguist 用来检测仓库中主要编程语言并在仓库主页显示语言占比的工具，默认会根据文件后缀识别语言。
+# 强制将所有 js、css、html 文件识别为 Vue 语言，让这些文件的代码量合并到 Vue 的统计中，更准确地反映项目的主要语言。
 *.js linguist-language=Vue
 *.css linguist-language=Vue
 *.html linguist-language=Vue
+
+# 所有文本文件使用 LF 换行，提交时自动转换为 LF，检出时根据系统转换 (Windows 用 CRLF，Linux/macOS 用 LF)
+* text=auto

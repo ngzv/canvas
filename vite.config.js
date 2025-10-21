@@ -1,16 +1,20 @@
-import { defineConfig, loadEnv } from 'vite'
-import path from 'path'
-import vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite'
+// vite.config.js
+// Vite 构建工具的配置文件
+// 用于自定义 Vite 的构建、开发服务器、插件等行为。Vite 是一个基于浏览器原生 ES 模块的前端构建工具，以快速的热更新和构建速度著称，vite.config.js 是其核心配置入口。
+
+import { defineConfig, loadEnv } from 'vite';
+import path from 'path';
+import vue from '@vitejs/plugin-vue';
+import AutoImport from 'unplugin-auto-import/vite';
 
 /// `https://vite.dev/config/`
 export default defineConfig(({ command, mode }) => {
   // 加载环境变量，包含前缀为 VITE_ 的环境变量
-  const env = loadEnv(mode, process.cwd(), '')
-  const { VITE_PORT, VITE_PROXY_TARGET, VITE_PUBLIC_PATH } = env
+  const env = loadEnv(mode, process.cwd(), '');
+  const { VITE_PORT, VITE_PROXY_TARGET, VITE_PUBLIC_PATH } = env;
   
   // 只在构建时计算时间戳
-  const now = command === 'build' ? new Date().getTime() : ''
+  const now = command === 'build' ? new Date().getTime() : '';
   
   return {
     /// 配置公共路径
@@ -28,14 +32,14 @@ export default defineConfig(({ command, mode }) => {
         // ==> '@vueuse/core' 自动释放
         imports: ['vue', 'vue-router', '@vueuse/core'],
         // 自动生成声明文件
-        dts: false,
-      }),
+        dts: false
+      })
     ],
     /// 配置路径别名与扩展名
     resolve: {
       // 配置路径别名，`@` 指向 `src` 目录,与 `jsconfig` 中 `paths` 配置同步
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        '@': path.resolve(__dirname, './src')
       },
       // 配置文件扩展名
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
@@ -57,15 +61,15 @@ export default defineConfig(({ command, mode }) => {
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, ''),
           configure: (proxy, options) => {
-            // 配置代理请求头 `x-real-url` 为原始请求 `URL` (响应头可以看到请求真实地址)
+            // 配置代理请求头 `X-REAL-URL` 为原始请求 `URL` (响应头可以看到请求真实地址)
             proxy.on('proxyReq', (proxyReq, req, res) => {
               if (options.target && typeof options.target === 'string') {
-                proxyReq.headers['x-real-url'] = new URL(req.url || '', options.target).href || ''
+                proxyReq.headers['X-REAL-URL'] = new URL(req.url || '', options.target).href || '';
               }
-            })
-          },
-        },
-      },
+            });
+          }
+        }
+      }
     },
     /// 打包配置
     build: {
@@ -96,7 +100,7 @@ export default defineConfig(({ command, mode }) => {
             utils: ['@vueuse/core']
           }
         }
-      },
-    },
-  }
-})
+      }
+    }
+  };
+});

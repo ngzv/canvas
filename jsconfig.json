@@ -1,3 +1,7 @@
+// jsconfig.json
+// JavaScript 项目的配置文件
+// 用于告诉 IDE（如 VS Code）如何理解项目的结构、模块解析规则、编译选项等，主要作用是增强 JavaScript 的开发体验（如智能提示、路径别名跳转、类型检查等）。它基于 TypeScript 的配置规范，但专门用于 JavaScript 项目。
+
 {
   // 配置 `JavaScript` 编译器选项
   "compilerOptions": {

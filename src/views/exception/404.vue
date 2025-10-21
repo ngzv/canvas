@@ -12,20 +12,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import Png404 from '@/assets/exception/404.png'
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import Png404 from '@/assets/exception/404.png';
 
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
-const ExceptionPng = ref(Png404 + '?' + new Date())
+const ExceptionPng = ref(Png404 + '?' + new Date());
 
 function back() {
   if (route.query.noGoBack) {
-    router.push({ path: '/' })
+    router.push({ path: '/' });
   } else {
-    router.go(-1)
+    router.go(-1);
   }
 }
 </script>

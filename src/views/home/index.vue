@@ -12,41 +12,41 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
 
 defineProps({
-  msg: String,
-})
+  msg: String
+});
 
 onMounted(() => {
   // 获取画布元素
-  let canvas = document.getElementById('canvas')
+  const canvas = document.getElementById('canvas');
   // 检查是否成功获取到画布元素
   if (!canvas) {
-    console.error('未找到画布元素！')
-    return
+    console.error('未找到画布元素！');
+    return;
   }
 
   // 判断是否支持 Canvas (不支持说明浏览器极其老旧，10年前？)
   if (!canvas.getContext) {
-    console.error('浏览器不支持 Canvas 绘图！')
-    return
+    console.error('浏览器不支持 Canvas 绘图！');
+    return;
   }
 
   // 获取绘图上下文
-  let ctx = canvas.getContext('2d')
+  const ctx = canvas.getContext('2d');
   // 检查是否成功获取到绘图上下文
   if (!ctx) {
-    console.error('未获取到绘图上下文！')
-    return
+    console.error('未获取到绘图上下文！');
+    return;
   }
 
   // 绘制矩形（x, y, width, height）
-  ctx.fillRect(10, 10, 100, 100)
+  ctx.fillRect(10, 10, 100, 100);
 
   // 输出绘图上下文信息
-  console.info(ctx)
-})
+  console.info(ctx);
+});
 </script>
 
 <style scoped lang="less">

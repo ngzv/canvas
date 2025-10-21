@@ -1,3 +1,9 @@
+// env.d.ts
+// TypeScript 项目中用于声明环境变量类型的文件
+// 作用是为全局环境变量（如 process.env、import.meta.env 中的变量）提供 TypeScript 类型定义，解决类型检查报错（如 “属性不存在”）的问题。
+
+/// <reference types="vite/client" />
+
 /// 解决 `TypeScript` 无法识别 `*.vue` 文件模块类型
 declare module '*.vue' {
   import { DefineComponent } from 'vue'
