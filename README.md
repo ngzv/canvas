@@ -35,3 +35,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## License
+
+[MIT](./LICENSE) License © 2025 [Ng Zv](https://github.com/ngzv)
