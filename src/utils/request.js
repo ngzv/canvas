@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 /// 初始化配置 `axios`
-export const request = axios.create({
+const request = axios.create({
   timeout: 6000,
   baseURL: import.meta.env.VITE_BASE_API_URL,
   headers: {
-    ...headers,
     'Content-Type': 'application/json;charset=utf-8'
   }
 });
@@ -32,8 +31,7 @@ request.interceptors.request.use((config) => {
 }, (error) => {
   /// 对请求错误做些什么
   return Promise.reject(error);
-}
-);
+});
 
 /** 
  * 响应拦截器
@@ -55,12 +53,13 @@ request.interceptors.response.use((response) => {
 
   // 处理业务逻辑错误
   if (code !== 200) {
-    /// 打印错误信息
+    /// 打印、弹出 错误信息
     // console.error(message || '业务逻辑错误!')
+    
     return Promise.reject(new Error(message || '业务逻辑错误!'));
   }
 
-  return Promise.resolve(response);
+  return Promise.resolve(data);
 }, (error) => {
   /// 对响应错误做点什么
   /// 超出 `2xx` 范围的状态码都会触发该函数
@@ -99,8 +98,7 @@ request.interceptors.response.use((response) => {
   // console.error(message)
 
   return Promise.reject(error);
-}
-);
+});
 
 
 /// 取消重复请求
@@ -145,3 +143,5 @@ function deletePendingRequest(config) {
     pendingRequests.delete(requestKey);
   }
 }
+
+export default request;

@@ -6,6 +6,7 @@ import { defineConfig, loadEnv } from 'vite';
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
 
 /// `https://vite.dev/config/`
 export default defineConfig(({ command, mode }) => {
@@ -33,6 +34,12 @@ export default defineConfig(({ command, mode }) => {
         imports: ['vue', 'vue-router', '@vueuse/core'],
         // 自动生成声明文件
         dts: false
+      }),
+      Components({
+        // 配置组件自动导入
+        dirs: ['src/components'],
+        // 配置组件自动导入的目录
+        dts: false,
       })
     ],
     /// 配置路径别名与扩展名
@@ -60,13 +67,9 @@ export default defineConfig(({ command, mode }) => {
           changeOrigin: true,
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, ''),
-          configure: (proxy, options) => {
-            // 配置代理请求头 `X-REAL-URL` 为原始请求 `URL` (响应头可以看到请求真实地址)
-            proxy.on('proxyReq', (proxyReq, req, res) => {
-              if (options.target && typeof options.target === 'string') {
-                proxyReq.headers['X-REAL-URL'] = new URL(req.url || '', options.target).href || '';
-              }
-            });
+          bypass(request, response, options) {
+            let proxy = options.target + options.rewrite(request.url)
+            response.setHeader('X-Response-Proxy-URL', proxy)
           }
         }
       }

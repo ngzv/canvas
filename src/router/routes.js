@@ -2,6 +2,10 @@
 export const routes = [
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: () => import('../views/home/index.vue'),
     meta: {
