@@ -1,5 +1,5 @@
 // 白名单，不需要 token 即可访问
-const whiteList = ['/login'];
+const whiteList = ['/login', '/401', '/404'];
 
 export function guard(router) {
 

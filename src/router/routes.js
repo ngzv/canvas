@@ -9,8 +9,7 @@ export const routes = [
     name: 'Home',
     component: () => import('../views/home/index.vue'),
     meta: {
-      title: '首页',
-      isHome: true
+      title: '首页'
     }
   },
   {
