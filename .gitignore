@@ -18,6 +18,7 @@ node_modules/
 
 # Build outputs
 dist
+dist.*
 dist-ssr
 build/
 *.local
@@ -76,3 +77,6 @@ yarn-error.log*
 *.pem
 .eslintcache
 .stylelintcache
+
+# Other
+stats.html
