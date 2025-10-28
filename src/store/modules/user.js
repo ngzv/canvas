@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 /// 定义用户模块的 `store`
 /// - 用于管理用户登录状态、权限等数据
 /// - 使用:
-///   `import useUserStore from '@/store/modules/user'`
+///   `import { useUserStore } from '@/store/modules/user'`
 ///   `const userStore = useUserStore()`
 ///   `userStore.setToken('newToken')`
 ///   `console.log(userStore.token)`
