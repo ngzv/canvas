@@ -39,7 +39,7 @@ export default defineConfig(({ command, mode }) => {
         // 配置组件自动导入
         dirs: ['src/components'],
         // 配置组件自动导入的目录
-        dts: false,
+        dts: false
       })
     ],
     /// 配置路径别名与扩展名
@@ -68,8 +68,8 @@ export default defineConfig(({ command, mode }) => {
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, ''),
           bypass(request, response, options) {
-            let proxy = options.target + options.rewrite(request.url)
-            response.setHeader('X-Response-Proxy-URL', proxy)
+            const proxy = options.target + options.rewrite(request.url);
+            response.setHeader('X-Response-Proxy-URL', proxy);
           }
         }
       }

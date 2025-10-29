@@ -4,7 +4,7 @@ export function captchaImage() {
   return request({
     url: '/user/captchaImage',
     method: 'get'
-  })
+  });
 }
 
 export function login(data) {
@@ -12,5 +12,5 @@ export function login(data) {
     url: '/user/login',
     method: 'post',
     data: data
-  })
+  });
 }

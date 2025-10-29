@@ -6,6 +6,9 @@ import plugins from './plugins';
 import directive from './directive'; 
 import './style.css';
 
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
+
 // 创建Vue应用实例
 const app = createApp(App);
 
@@ -14,6 +17,7 @@ app.use(pinia);
 app.use(router);
 app.use(plugins);
 app.use(directive);
+app.use(Antd);
 
 // 挂载应用
 app.mount('#app');

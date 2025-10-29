@@ -9,7 +9,16 @@ export const routes = [
     name: 'Home',
     component: () => import('../views/home/index.vue'),
     meta: {
-      title: '首页'
+      title: '首页',
+      isHome: true
+    }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/login/index.vue'),
+    meta: {
+      title: '登录'
     }
   },
   {
