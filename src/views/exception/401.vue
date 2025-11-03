@@ -1,5 +1,5 @@
 <template>
-  <div class="exception">
+  <div class="exception-container">
     <h1>401错误!</h1>
     <h2>您没有访问权限!</h2>
     <h6>对不起,您没有访问权限,请不要进行非法操作;您可以返回主页面或上一页。</h6>
@@ -31,7 +31,7 @@ function back() {
 </script>
 
 <style scoped lang="less">
-.exception {
+.exception-container {
   width: 350px;
   margin: 0px auto;
   color: #858687;

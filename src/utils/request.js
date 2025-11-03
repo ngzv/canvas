@@ -42,6 +42,11 @@ request.interceptors.response.use((response) => {
   /// 对响应数据做点什么
   /// `2xx` 范围内的状态码都会触发该函数
 
+  // 二进制数据则直接返回
+  if (response.request.responseType ===  'blob' || response.request.responseType ===  'arraybuffer') {
+    return response;
+  }
+
   // 从响应数据中提取 `data` 和 `config`
   const { data, config } = response;
 

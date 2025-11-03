@@ -7,6 +7,7 @@ import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 /// `https://vite.dev/config/`
 export default defineConfig(({ command, mode }) => {
@@ -39,7 +40,12 @@ export default defineConfig(({ command, mode }) => {
         // 配置组件自动导入
         dirs: ['src/components'],
         // 配置组件自动导入的目录
-        dts: false
+        dts: false,
+        resolvers: [
+          AntDesignVueResolver({
+            importStyle: false  // css in js
+          })
+        ]
       })
     ],
     /// 配置路径别名与扩展名

@@ -102,7 +102,7 @@ const handleLogin = async (values) => {
     
     // 这里应该调用登录API，现在模拟登录
     // 模拟API延迟
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
     
     // 设置token
     userStore.setToken('demo-token-' + Date.now());
@@ -147,7 +147,7 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(120deg, #1a2a3a 0%, #2c3e50 100%);
+  background: linear-gradient(130deg, #1A2A3A 0%, #2C3E50 100%);
   overflow: hidden;
   
   // 背景装饰
@@ -209,14 +209,14 @@ onMounted(() => {
       margin: 20px;
       
       h2 {
-        color: #2c3e50;
+        color: #2C3E50;
         font-weight: 600;
         font-size: 24px;
         margin-bottom: 0px;
       }
       
       p {
-        color: #7f8c8d;
+        color: #7F8C8D;
         font-size: 14px;
       }
     }
@@ -230,7 +230,7 @@ onMounted(() => {
         height: 40px;
         margin-left: 10px;
         cursor: pointer;
-        border: 1px solid #d9d9d9;
+        border: 1px solid #D9D9D9;
         border-radius: 4px;
         overflow: hidden;
         transition: border-color 0.3s ease;
@@ -242,18 +242,18 @@ onMounted(() => {
         }
         
         &:hover {
-          border-color: #2c3e50;
+          border-color: #2C3E50;
         }
       }
     }
     
     .forgot-password {
       float: right;
-      color: #7f8c8d;
+      color: #7F8C8D;
       transition: color 0.3s ease;
       
       &:hover {
-        color: #2c3e50;
+        color: #2C3E50;
       }
     }
     
@@ -268,7 +268,7 @@ onMounted(() => {
     .ant-btn-primary {
       height: 40px;
       font-size: 16px;
-      background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+      background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
       border: none;
       border-radius: 6px;
       font-weight: 500;
@@ -286,50 +286,50 @@ onMounted(() => {
     }
 
     :deep(.ant-input) {
-      border-color: #d9d9d9;
+      border-color: #D9D9D9;
       
       &:focus {
-        border-color: #2c3e50;
+        border-color: #2C3E50;
         box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
       }
 
       &:hover {
-        border-color: #2c3e50;
+        border-color: #2C3E50;
       }
       
       &:active {
-        border-color: #2c3e50;
+        border-color: #2C3E50;
       }
     }
 
     :deep(.ant-input-affix-wrapper) {
-      border-color: #d9d9d9;
+      border-color: #D9D9D9;
 
       &:focus {
-        border-color: #2c3e50;
+        border-color: #2C3E50;
         box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
       }
 
       &:hover {
-        border-color: #2c3e50;
+        border-color: #2C3E50;
       }
       
       &:active {
-        border-color: #2c3e50;
+        border-color: #2C3E50;
       }
     }
 
     :deep(.ant-input-affix-wrapper-focused) {
-      border-color: #2c3e50;
+      border-color: #2C3E50;
       box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
     }
 
     :deep(.ant-input-prefix) {
       margin-right: 10px;
-      color: #7f8c8d;
+      color: #7F8C8D;
       
       &:hover {
-        color: #2c3e50;
+        color: #2C3E50;
       }
     }
     
@@ -337,7 +337,7 @@ onMounted(() => {
       color: rgba(0, 0, 0, 0.25);
       
       &:hover {
-        color: #2c3e50;
+        color: #2C3E50;
       }
     }
 
@@ -351,7 +351,7 @@ onMounted(() => {
       color: rgba(0, 0, 0, 0.4);
       
       &:hover {
-        color: #2c3e50;
+        color: #2C3E50;
       }
       
       svg {
@@ -365,48 +365,48 @@ onMounted(() => {
     }
     
     :deep(.ant-checkbox-wrapper) {
-      color: #7f8c8d;
+      color: #7F8C8D;
 
       .ant-checkbox {
 
         .ant-checkbox-inner {
-          border-color: #2c3e50;
+          border-color: #2C3E50;
           
           &:hover {
-            border-color: #2c3e50;
+            border-color: #2C3E50;
           }
         }
         
         &.ant-checkbox-checked {
 
           .ant-checkbox-inner {
-            background-color: #2c3e50;
-            border-color: #2c3e50;
+            background-color: #2C3E50;
+            border-color: #2C3E50;
           }
         }
         
         &.ant-checkbox-checked::after {
-          border-color: #2c3e50;
+          border-color: #2C3E50;
         }
         
         &:hover {
 
           .ant-checkbox-inner {
-            border-color: #2c3e50;
+            border-color: #2C3E50;
           }
         }
         
         &:focus {
 
           .ant-checkbox-inner {
-            border-color: #2c3e50;
+            border-color: #2C3E50;
             box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.2);
           }
         }
       }
       
       &:hover {
-        color: #2c3e50;
+        color: #2C3E50;
       }
     }
   }
